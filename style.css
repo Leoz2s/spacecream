@@ -1,0 +1,328 @@
+/* Consertar erro de mobile-first com o background do header / header h1 e a centralização no mobile small */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+  
+  --ff-heading: 'Staatliches', cursive;
+  --ff-text: 'Palanquin', sans-serif;
+
+  /* Desktop Font Families */
+  --ff-text-secondary: 'Open Sans', sans-serif;
+  --ff-footer: 'Roboto', sans-serif;
+
+
+  --bg-primary: #EFF1FF;
+  --bg-secondary: #8E9AAF;
+  --bg-tertiary: #CBC0D3;
+  --bg-quaternary: #FEEAFA;
+
+  --fc-primary: #FFF;
+  --fc-secondary: #23053A;
+  --fc-tertiary: #4A4E69;
+}
+
+body {
+  text-align: center;
+  margin: 0 auto; 
+
+  background-color: var(--bg-primary);
+}
+
+header {
+  background-color: var(--bg-secondary);
+
+  padding-bottom: 2.9rem;
+  margin-bottom: 2.5rem;
+}
+
+header img {
+  margin: 3.2rem;
+}
+
+#desktop-logo {
+  display: none;
+}
+
+header h1 {
+  background-color: var(--bg-tertiary);
+  padding: 0.8rem 8.7rem;
+
+  font-family: var(--ff-heading);
+  color: var(--fc-primary);
+  font-size: 4rem;
+
+  letter-spacing: 2px;
+  font-weight: 400;
+
+}
+
+#desktop-text {
+  display: none;
+}
+
+p {
+  font-family: var(--ff-text);
+  color: var(--fc-secondary);
+  font-size: 1.7rem;
+  line-height: 2.5rem;
+
+  width: clamp(30rem, 30rem + 6vw, 120rem);
+
+
+  margin: 0 auto 6.3rem;
+  
+}
+
+main {
+  margin-bottom: 60px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.card {
+  position: relative;
+
+  margin: 0 auto;
+  
+  width: fit-content;
+
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+
+  animation-name: topdown;
+  animation-duration: 3.5s;
+  animation-timing-function: ease-in-out;
+}
+
+.card:hover {
+  transform: scale(105%);
+}
+
+.desktop-cards {
+  display: none;
+}
+
+.card img {
+  border-radius: 2.5rem;
+}
+
+.card h2 {
+  background-color: var(--bg-quaternary);
+  padding: 0.6rem 2.4rem;
+
+  border-radius: 20px;
+
+  position: absolute;
+  top: -1.5rem;
+  right: 1.6rem;
+
+  color: var(--fc-tertiary);
+  font-family: var(--ff-heading);
+  font-size: 2.0rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+
+  border: 1px solid #23053A;
+}
+
+main footer {
+  display: none;
+}
+
+@keyframes topdown {
+  0% {
+    opacity: 0;
+    transform:translateX(-100px);
+  }
+  
+  1% {
+    transform: translateY(-100px); 
+    
+  }
+  /* 2% {
+    transform: scaleX(120%);
+    
+  } */
+
+  25% {
+    opaicity: 0.25;
+    transform: translateX(100px);
+  }
+  /* 26% {
+    transform: translateY(100px);
+
+  } */
+  /* 27% {
+    transform: scaleX(115%);
+    
+  } */
+
+  50% {
+    opaicity: 0.5;
+    transform: translateX(-50px);
+  }
+  /* 51% {
+    transform: translateY(-50px);
+  } */
+  /* 52% {
+    transform: scaleX(105%);
+  } */
+
+  75% {
+    opacity: 0.75;
+    transform: translateX(50px);
+  }
+  /* 76% {
+    transform: scaleX(110%);
+  } */
+
+  99% {
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Por que flicava no desktop? */
+    
+  }
+}
+
+@media (min-width: 1020px) {
+  header img {
+    margin: 1rem;
+  }
+
+  header {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 2rem;
+    width: 55rem;
+  }
+
+  main {
+    display: grid;
+    grid-template-areas:
+    "A C E"
+    "B C F"
+    "B D F"
+    "G G G";
+    align-content: start;
+    gap: 2.5rem;
+  }
+
+  .desktop-cards {
+    display: block;
+  }
+
+  main h2 {
+    display: none;
+  }
+
+  main div:nth-child(1) {
+    grid-area: A;
+  }
+
+  main div:nth-child(2) {
+    grid-area: C;
+  }
+
+  main div:nth-child(3) {
+    grid-area: D;
+  }
+
+  main div:nth-child(4) {
+    grid-area: B;
+  }
+
+  main div:nth-child(5) {
+    grid-area: E;
+  }
+
+  main div:nth-child(6) {
+    grid-area: F;
+  }
+
+  main footer {
+    display: block;
+
+    grid-area: G;
+
+    margin-top: 1.5rem;
+
+    font-family: var(--ff-footer);
+    color: var(--fc-tertiary);
+    font-size: 2.25rem;
+  }
+
+  main footer a {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--fc-tertiary);
+  }
+}
+
+@media (min-width: 1570px) {
+
+  body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    background-color: #FFF;
+    
+    min-height: 100vh;
+  }
+  
+  aside {
+    padding-top: 10rem;
+
+    background-color: var(--bg-secondary);
+  }
+
+  aside img {
+    display: none;
+  }
+
+  #desktop-logo {
+    display: block;
+
+    margin: 3.2rem auto;
+  }
+
+  aside h1 {
+    font-size: 6.8rem;
+
+    padding: 2.1rem 0;
+  }
+
+  aside p {
+    display: none;
+  }
+
+  #desktop-text {
+    display: block;
+
+    font-family: var(--ff-text-secondary);
+    color: var(--fc-primary);
+    font-size: 2.4rem;
+    line-height: 3.0rem;
+
+    margin: 0 auto;
+  }
+
+  main {
+    margin: 4rem 0;
+
+    display: grid;
+    align-self: center;
+  }
+}
